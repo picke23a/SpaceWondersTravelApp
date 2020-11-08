@@ -41,6 +41,8 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     //gets mouse input
     private static MouseInput mouseInput = new MouseInput();
     
+    private static JFrame f;
+    
 
     //window dimensions
     private static final int WINDOW_HEIGHT = 600;
@@ -211,13 +213,14 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     public static void main(String[] args) {
         // JFrame is the class for a window. Create the window,
         // set the window's title and its size.
-        JFrame f = new JFrame();
+        f = new JFrame();
         f.setTitle("Pandemic");
         f.setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
         f.getContentPane().setBackground(Color.BLACK);
         
         //creates the map
         holyokeGame = new HolyokeMap();
+        
         
         //creates a jpanel that the image can be added to
         JPanel panel=new JPanel(); 
