@@ -49,8 +49,7 @@ public class MouseInput implements MouseListener {
         // of the game is the EXIT_SCREEN, then quit the game
         if ((mouseX >= WINDOW_WIDTH / 2 + amt
                 && mouseX <= WINDOW_WIDTH / 2 + xamt + amt3)
-                && (HolyokeMap.State == HolyokeMap.STATE.EXIT_SCREEN
-                        || HolyokeMap.State == HolyokeMap.STATE.ABOUT)) {
+                ) {
             // TO QUIT!!
             if (mouseY >= yamt && mouseY <= yamt + amt2) {
                 System.exit(1);
@@ -61,8 +60,7 @@ public class MouseInput implements MouseListener {
         // and the state of the game is either ABOUT or MENU, exit the game
         if ((mouseX >= WINDOW_WIDTH / 2 + amt
                 && mouseX <= WINDOW_WIDTH / 2 + xamt + amt3)
-                && (HolyokeMap.State == HolyokeMap.STATE.MENU
-                        || HolyokeMap.State == HolyokeMap.STATE.ABOUT)) {
+                && (HolyokeMap.State == HolyokeMap.STATE.MENU)) {
             // TO QUIT!!
             if (mouseY >= yamt && mouseY <= yamt + amt2) {
                 System.exit(1);
@@ -85,15 +83,10 @@ public class MouseInput implements MouseListener {
         if (mouseX >= WINDOW_WIDTH / 2 - (xamt + amt4)
                 && mouseX <= WINDOW_WIDTH / 2 - (xamt + amt4) + amt3
                 && mouseY >= yamt && mouseY <= yamt + amt2) {
-            if (HolyokeMap.State == HolyokeMap.STATE.MENU
-                    || HolyokeMap.State == HolyokeMap.STATE.ABOUT) {
+            if (HolyokeMap.State == HolyokeMap.STATE.MENU) {
                 HolyokeMap.State = HolyokeMap.STATE.GAME;
-            } else if (HolyokeMap.State == HolyokeMap.STATE.EXIT_SCREEN) {
-                //HolyokeMap.playAgain();
-                HolyokeMap.State = HolyokeMap.STATE.GAME;
-            }
+            } 
         }
-        System.out.println("HAOWEAOJIAEWFOJ");
 
     }
 
@@ -116,11 +109,7 @@ public class MouseInput implements MouseListener {
         if (mouseX >= WINDOW_WIDTH / 2 - amt5
                 && mouseX <= WINDOW_WIDTH / 2 - amt5 + amt3
                 && (HolyokeMap.State == HolyokeMap.STATE.MENU)) {
-            // TO About!!
-            if (mouseY >= yamt && mouseY <= yamt + amt2) {
-                System.out.println("I hit About");
-                HolyokeMap.State = HolyokeMap.STATE.ABOUT;
-            }
+            
         }
 
     }

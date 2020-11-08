@@ -20,15 +20,11 @@ import animation.AbstractAnimation;
  * player. The player would be able to rotate clockwise or anti-clockwise,
  * move back, move forward, and leave trails as the player moves around campus
  * 
- * @author AmyWang, Gloria, Anna, Anisha
+ * @author AmyWang, Gloria, Anna, AJ
  *
  */
 public class MHCStudent extends OnscreenObject {
 
-    // Initializes width and height for the polygon shape
-    private static final int width = 5;
-
-    private static final int height = 20;
 
     // The number of pixels to move on each frame of the animation
     private static final int moveAmount = 10;
@@ -64,7 +60,7 @@ public class MHCStudent extends OnscreenObject {
     int studentHeight;
 
     /**
-     * Creates the animated Doctor object
+     * Creates the animated Student object
      *
      * @param animation - the animation this object is part of
      */
@@ -94,7 +90,7 @@ public class MHCStudent extends OnscreenObject {
     }
 
     /**
-     * Makes sure the doctor is within the window of animation every frame
+     * Makes sure the student is within the window of animation every frame
      */
     public void nextFrame() {
         wrapAround();
@@ -267,85 +263,5 @@ public class MHCStudent extends OnscreenObject {
         }
     }
 
-    /**
-     * Gets move amount. FOR TESTING PURPOSES ONLY.
-     * 
-     * @return moveAmount - the value of moveAmount
-     */
-    public static int getMoveAmount() {
-        return moveAmount;
-    }
-
-    /**
-     * Gets x value. FOR TESTING PURPOSES ONLY.
-     * 
-     * @return x - the value of x 
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * Gets y value. FOR TESTING PURPOSES ONLY.
-     * 
-     * @return y - the value of y
-     */
-    public int getY() {
-        return y;
-    }
-
-    /**
-     * Sets x value. FOR TESTING PURPOSES ONLY.
-     * 
-     * @param newX - the value of new x
-     */
-    public void setX(int newX) {
-        x = newX;
-    }
-
-    /**
-     * Sets x value. FOR TESTING PURPOSES ONLY.
-     * 
-     * @param newY - the value of new y 
-     */
-    public void setY(int newY) {
-        y = newY;
-    }
-
-    /**
-     * Gets rotateClockwise. FOR TESTING PURPOSES ONLY.
-     * 
-     * @return rotateClockwise - status of rotateClockwise
-     */
-    public boolean getRotateClockwise() {
-        return rotateClockwise;
-    }
-
-    /**
-     * Gets rotateAntiClockwise. FOR TESTING PURPOSES ONLY.
-     * 
-     * @return rotateAntiClockwise
-     */
-    public boolean getRotateAntiClockwise() {
-        return rotateAntiClockwise;
-    }
-
-    /**
-     * Sets rotation degree. FOR TESTING PURPOSES ONLY.
-     * 
-     * @param d - the value of degree
-     */
-    public void setDegree(double d) {
-        degree = d;
-    }
-
-    /**
-     * Sets rotation degree. FOR TESTING PURPOSES ONLY.
-     * 
-     * @return degree - the value of degree
-     */
-    public double getDegree() {
-        return degree;
-    }
 
 }
