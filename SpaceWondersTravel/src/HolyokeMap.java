@@ -158,7 +158,22 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
 //           f.setSize(1600,1000);
 //           f.setSize(holyokeGame.getWidth(),holyokeGame.getHeight());
 //           f.setResizable(false);
+        	
+        	
+        	
+        	//f.getContentPane().setBackground(Color.GREEN);
+        	
+        	JPanel panel1 = new JPanel();
+        	panel1.setBounds(100, 100, 20, 100);
+        	panel1.setBackground(Color.gray);
+            ImageIcon img = new ImageIcon("OIP.jfif");
+        	f.setContentPane(new JLabel(img));
+        	f.setLayout(new FlowLayout());
+        	f.setSize(holyokeGame.getWidth(),holyokeGame.getHeight());
+        	
+        	f.setResizable(false);
            
+        	
             
 
             
@@ -319,7 +334,10 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         f = new JFrame();
         f.setTitle("Pandemic");
         f.setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
-        f.getContentPane().setBackground(Color.BLACK);
+        
+        Color myGreen = new Color(24, 134, 45);
+
+        f.getContentPane().setBackground(myGreen);
         
         //creates the map
         holyokeGame = new HolyokeMap();
