@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -113,7 +114,23 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         if (State == STATE.MENU) {
             menuRender(g);
         }
+        
+        else if (State == STATE.GAME) {
+            //creates a jpanel that the image can be added to
+            JPanel panel=new JPanel(); 
+            panel.setBounds(0, 0, 900, 600);    
+            //panel.setBackground(Color.gray); 
+            
+            ImageIcon img = new ImageIcon("HolyokeMap.jpg");
+            f.setContentPane(new JLabel(img));
+            f.setLayout(new FlowLayout());
+            JLabel L1 = new JLabel();
+            f.add(L1);
+            f.setSize(1600,1000);
+            //f.setSize(holyokeGame.getWidth(),holyokeGame.getHeight());
+            f.setResizable(false);
 
+        }
         // handles about screen
         else if (State == STATE.ABOUT) {
             //aboutRender(g);
@@ -211,7 +228,7 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
      * @param args - some arguments
      */
     public static void main(String[] args) {
-        // JFrame is the class for a window. Create the window,
+     // JFrame is the class for a window. Create the window,
         // set the window's title and its size.
         f = new JFrame();
         f.setTitle("Pandemic");
@@ -220,25 +237,6 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         
         //creates the map
         holyokeGame = new HolyokeMap();
-        
-        
-        //creates a jpanel that the image can be added to
-        JPanel panel=new JPanel(); 
-        panel.setBounds(0, 0, 900, 600);    
-        panel.setBackground(Color.gray); 
-        
-        //RESIZES IMAGE FOR FRAME
-        ImageIcon img = new javax.swing.ImageIcon("HolyokeMap.jpg");
-        Image image = img.getImage(); // transform it 
-        Image newimg = image.getScaledInstance(900, 600,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-        img = new ImageIcon(newimg);  // transform it back
-        
-        //create a jlabel and adds the image to it
-        JLabel jl=new JLabel();
-        jl.setIcon(img);
-        panel.add(jl);
-        
-        f.add(panel);  
 
         holyokeGame.addMouseListener(mouseInput);
 
@@ -255,5 +253,6 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
 
         holyokeGame.start();
     }
+    
  
 }
