@@ -67,6 +67,8 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
  // doctor variable, since there is only one doctor at a time
     private MHCStudent student = new MHCStudent(this);
     
+    private Pushpins pushpinTest = new Pushpins(this, 150, 150);
+    
     
  // stores all vaccine particels
     private ArrayList<TrailParticles> particleList = new ArrayList<>();
@@ -102,17 +104,22 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
             case KeyEvent.VK_SPACE:
                 break;
             case KeyEvent.VK_UP:
-                student.accelerate();
+                student.up();
                 particleList.add(student.shoot());
                 break;
             case KeyEvent.VK_RIGHT:
-                student.accelerate();
+            	student.right();
+                student.rotateClockwise();
                 particleList.add(student.shoot());
                 break;
             case KeyEvent.VK_LEFT:
-                student.accelerate();
+            	student.left();
+                student.rotateAntiClockwise();
                 particleList.add(student.shoot());
                 break;
+            case KeyEvent.VK_DOWN:
+            	student.down();
+            	particleList.add(student.shoot());
             default:
             }
         }
@@ -138,7 +145,7 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         
         else if (State == STATE.GAME) {
         	student.paint((Graphics2D) g);
-        	System.out.println("Student paint in main");
+        	pushpinTest.paint((Graphics2D) g);
 //            //creates a jpanel that the image can be added to
 //            JPanel panel=new JPanel(); 
 //            panel.setBounds(0, 0, 900, 600);    
@@ -183,24 +190,39 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
      
     }
     
+  
+    
     @Override
     protected void nextFrame() {
         this.addMouseListener(mouseInput);
         
         if (State == STATE.GAME) {
             student.nextFrame();
-            
-            // calls nextFrame for every particle in the game
-            for (int i = 0; i < particleList.size(); i++) {
-                particleList.get(i).nextFrame();
-
-            }
+            pushpinTest.nextFrame();
+            // TODO Figure out how to make a pop up happen when a student collides
+            // with a pushpin
+//            if (checkCollision(student, pushpinTest)) {
+//                // if virus collides with doctor, both disappear
+//                student.disappear();
+//            }
         }
    
         
         repaint();
     }
     
+//    /**
+//     * Check whether two object collide. This tests whether their shapes
+//     * intersect.
+//     * 
+//     * @param shape1 the first shape to test
+//     * @param shape2 the second shape to test
+//     * @return true if the shapes intersect
+//     */
+//    boolean checkCollision(OnscreenObject shape1, OnscreenObject shape2) {
+//        return shape2.getShape().intersects(shape1.getShape().getBounds2D());
+//        
+//    }
     
     /**
      * Creates the game's intro screen.
