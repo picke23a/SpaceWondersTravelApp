@@ -6,17 +6,25 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+import javax.swing.UIManager;
 
 import animation.AbstractAnimation;
-
 
 public class HolyokeMap extends AbstractAnimation implements KeyListener {
     // an instance of the game
@@ -31,8 +39,7 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     //window dimensions
     private static final int WINDOW_HEIGHT = 600;
     private static final int WINDOW_WIDTH = 900;
-    
-    private MHCStudent student = new MHCStudent(this);
+  
     
     /**
      * Keeps track of the state of the game
@@ -57,6 +64,15 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     private Rectangle playAgainButton = new Rectangle(WINDOW_WIDTH / 2 - 330,
             500, 150, 50);
     
+ // doctor variable, since there is only one doctor at a time
+    private MHCStudent student = new MHCStudent(this);
+    
+    
+ // stores all vaccine particels
+    private ArrayList<TrailParticles> particleList = new ArrayList<>();
+    
+    
+    
     /**
      * Constructs a pandemicGame and initializes it to be able to accept key
      * input.
@@ -71,14 +87,35 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
+    public void keyTyped(KeyEvent event) {
         
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
+    public void keyPressed(KeyEvent event) {
+        int key = event.getKeyCode();
+        // if the game is currently being played, the user can interact with
+        // these keys
+        if (State == STATE.GAME) {
+            System.out.println("True");
+            switch (key) {
+            case KeyEvent.VK_SPACE:
+                break;
+            case KeyEvent.VK_UP:
+                student.accelerate();
+                particleList.add(student.shoot());
+                break;
+            case KeyEvent.VK_RIGHT:
+                student.rotateClockwise();
+                particleList.add(student.shoot());
+                break;
+            case KeyEvent.VK_LEFT:
+                student.rotateAntiClockwise();
+                particleList.add(student.shoot());
+                break;
+            default:
+            }
+        }
         
     }
 
@@ -106,17 +143,25 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
 //            JPanel panel=new JPanel(); 
 //            panel.setBounds(0, 0, 900, 600);    
 //            //panel.setBackground(Color.gray); 
-//            
-//            ImageIcon img = new ImageIcon("HolyokeMap.jpg");
-//            f.setContentPane(new JLabel(img));
-//            f.setLayout(new FlowLayout());
-//            JLabel L1 = new JLabel();
-//            f.add(L1);
-//            f.setSize(1600,1000);
-//            //f.setSize(holyokeGame.getWidth(),holyokeGame.getHeight());
-//            f.setResizable(false);
-//            System.out.println("Are you sleeping???");
+//           ImageIcon img = new ImageIcon("HolyokeMap.jpg");
+//           f.setContentPane(new JLabel(img));
+//           f.setLayout(new FlowLayout());
+//           //JLabel L1 = new JLabel();
+//          // f.add(L1);
+//           f.setSize(1600,1000);
+//           f.setSize(holyokeGame.getWidth(),holyokeGame.getHeight());
+//           f.setResizable(false);
+           
             
+
+            
+            // paints student
+            student.paint((Graphics2D) g);
+            
+            // paints every particle in the particleList
+            for (int i = 0; i < particleList.size(); i++) {
+                particleList.get(i).paint((Graphics2D) g);
+            }
 
         }
         // handles about screen
@@ -133,11 +178,25 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         else if (State == STATE.GAMEOVER) {
             //gameoverRender(g);
         }
+        
+        
+     
     }
     
     @Override
     protected void nextFrame() {
         this.addMouseListener(mouseInput);
+        
+        if (State == STATE.GAME) {
+            student.nextFrame();
+            
+            // calls nextFrame for every particle in the game
+            for (int i = 0; i < particleList.size(); i++) {
+                particleList.get(i).nextFrame();
+
+            }
+        }
+   
         
         repaint();
     }
@@ -208,6 +267,23 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
 
     }
     
+    /**
+     * a getter for the width of the window
+     * 
+     * @return window_width 0 the width of the window
+     */
+    public static int getWindowWidth() {
+        return WINDOW_WIDTH;
+    }
+
+    /**
+     * a getter for the height of the window
+     * 
+     * @return window_height - the height of the window
+     */
+    public static int getWindowHeight() {
+        return WINDOW_HEIGHT;
+    }
     
     
     /**
@@ -241,7 +317,7 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
 
         holyokeGame.start();
         
-        
+
     }
     
    

@@ -107,6 +107,7 @@ public class MHCStudent extends OnscreenObject {
 //        // Initialize (x, y) to be at the center of the window
 //        x = WINDOW_WIDTH / 2;
 //        y = WINDOW_HEIGHT / 2;
+
     }
 
     /**
@@ -198,27 +199,31 @@ public class MHCStudent extends OnscreenObject {
 
         // FOR TESTING PURPOSES ONLY.
         if (WINDOW_WIDTH <= 0) {
-            WINDOW_WIDTH = animation.getWidth();
+
+            WINDOW_WIDTH = HolyokeMap.getWindowWidth();
         }
         // FOR TESTING PURPOSES ONLY.
         if (WINDOW_HEIGHT <= 0) {
-            WINDOW_HEIGHT = animation.getHeight();
+
+            WINDOW_HEIGHT = HolyokeMap.getWindowHeight();
         }
 
         Random rand = new Random();
         x = rand.nextInt(WINDOW_WIDTH);
         y = rand.nextInt(WINDOW_HEIGHT);
     }
-//
-//    /**
-//     * Returns a particle from the tip of the polygon shape
-//     * 
-//     * @return particle - Particle class
-//     */
-//    public Particles shoot() {
-//        Particles particle = new Particles(animation, x, y, degree);
-//        return particle;
-//    }
+
+
+    /**
+     * Returns a particle from the tip of the polygon shape
+     * 
+     * @return particle - Particle class
+     */
+    
+    public TrailParticles shoot() {
+        TrailParticles particle = new TrailParticles(animation, x, y);
+        return particle;
+    }
 
     /**
      * Moves the polygon is a straight line with the according degree, updating
@@ -244,11 +249,13 @@ public class MHCStudent extends OnscreenObject {
 
         // FOR TESTING PURPOSES ONLY
         if (WINDOW_WIDTH <= 0) {
-            WINDOW_WIDTH = animation.getWidth();
+
+            WINDOW_WIDTH = HolyokeMap.getWindowWidth();
+
         }
         // FOR TESTING PURPOSES ONLY
         if (WINDOW_HEIGHT <= 0) {
-            WINDOW_HEIGHT = animation.getHeight();
+            WINDOW_HEIGHT = HolyokeMap.getWindowHeight();
         }
 
         if (x > WINDOW_WIDTH && WINDOW_WIDTH > 0) {
