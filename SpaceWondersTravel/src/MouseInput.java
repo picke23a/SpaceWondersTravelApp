@@ -26,6 +26,8 @@ public class MouseInput implements MouseListener {
     private final int amt5 = 70;
 
     private final int amt6 = 80;
+    
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -91,6 +93,7 @@ public class MouseInput implements MouseListener {
                 HolyokeMap.State = HolyokeMap.STATE.GAME;
             }
         }
+        System.out.println("HAOWEAOJIAEWFOJ");
 
     }
 
