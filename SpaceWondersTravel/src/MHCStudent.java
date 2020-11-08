@@ -58,7 +58,7 @@ public class MHCStudent extends OnscreenObject {
      *
      * @param animation - the animation this object is part of
      */
-    public Doctor(AbstractAnimation animation) {
+    public MHCStudent(AbstractAnimation animation) {
         this.animation = animation;
 
         Point p1;
@@ -76,9 +76,9 @@ public class MHCStudent extends OnscreenObject {
         doctorShape.addPoint((int) p3.getX(), (int) p3.getY());
 
         // The width of the window, in pixels.
-        int WINDOW_WIDTH = PandemicGame.getWindowWidth();
+        int WINDOW_WIDTH = HolyokeMap.getWindowWidth();
         // The height of the window, in pixels.
-        int WINDOW_HEIGHT = PandemicGame.getWindowHeight();
+        int WINDOW_HEIGHT = HolyokeMap.getWindowHeight();
         // Initialize (x, y) to be at the center of the window
         x = WINDOW_WIDTH / 2;
         y = WINDOW_HEIGHT / 2;
@@ -174,11 +174,11 @@ public class MHCStudent extends OnscreenObject {
 
         // FOR TESTING PURPOSES ONLY.
         if (WINDOW_WIDTH <= 0) {
-            WINDOW_WIDTH = PandemicGame.getWindowWidth();
+            WINDOW_WIDTH = HolyokeMap.getWindowWidth();
         }
         // FOR TESTING PURPOSES ONLY.
         if (WINDOW_HEIGHT <= 0) {
-            WINDOW_HEIGHT = PandemicGame.getWindowHeight();
+            WINDOW_HEIGHT = HolyokeMap.getWindowHeight();
         }
 
         Random rand = new Random();
@@ -191,8 +191,9 @@ public class MHCStudent extends OnscreenObject {
      * 
      * @return particle - Particle class
      */
-    public Particles shoot() {
-        Particles particle = new Particles(animation, x, y, degree);
+    
+    public TrailParticles shoot() {
+        TrailParticles particle = new TrailParticles(animation, x, y);
         return particle;
     }
 
@@ -220,11 +221,11 @@ public class MHCStudent extends OnscreenObject {
 
         // FOR TESTING PURPOSES ONLY
         if (WINDOW_WIDTH <= 0) {
-            WINDOW_WIDTH = PandemicGame.getWindowWidth();
+            WINDOW_WIDTH = HolyokeMap.getWindowWidth();
         }
         // FOR TESTING PURPOSES ONLY
         if (WINDOW_HEIGHT <= 0) {
-            WINDOW_HEIGHT = PandemicGame.getWindowHeight();
+            WINDOW_HEIGHT = HolyokeMap.getWindowHeight();
         }
 
         if (x > WINDOW_WIDTH && WINDOW_WIDTH > 0) {
