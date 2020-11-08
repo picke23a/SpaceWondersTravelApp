@@ -74,8 +74,7 @@ public class MHCStudent extends OnscreenObject {
         this.animation = animation;
         
         try {
-            img = ImageIO.read(new File("red-pegasus-with-circle-620x349.png"));
-            
+        	img = ImageIO.read(new File("red-pegasus-with-circle-620x349.png"));
         } 
         catch (IOException e) {
         }
@@ -93,7 +92,7 @@ public class MHCStudent extends OnscreenObject {
      * @param g - the graphics context to draw on.
      */
     public void paint(Graphics2D g) {
-        g.drawImage(img, x, y, (int)(studentWidth *0.2), (int)(studentHeight *0.2), null);
+    	g.drawImage(img, x, y, (int)(studentWidth *0.2), (int)(studentHeight *0.2), null);
     }
 
     /**
