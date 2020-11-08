@@ -106,11 +106,11 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
                 particleList.add(student.shoot());
                 break;
             case KeyEvent.VK_RIGHT:
-                student.rotateClockwise();
+                student.accelerate();
                 particleList.add(student.shoot());
                 break;
             case KeyEvent.VK_LEFT:
-                student.rotateAntiClockwise();
+                student.accelerate();
                 particleList.add(student.shoot());
                 break;
             default:
