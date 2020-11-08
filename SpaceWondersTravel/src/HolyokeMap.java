@@ -5,12 +5,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,7 +23,13 @@ import java.util.Scanner;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import animation.AbstractAnimation;
 
@@ -34,8 +42,10 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     private static MouseInput mouseInput = new MouseInput();
     
 
+    //window dimensions
     private static final int WINDOW_HEIGHT = 600;
     private static final int WINDOW_WIDTH = 900;
+    
     
     /**
      * Keeps track of the state of the game
@@ -85,7 +95,7 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
      * @param g the graphics context to draw on
      */
     public void paintComponent(Graphics g) {
-        
+        //g.drawImage(img, 0, 0, null);
     }
     
     @Override
@@ -106,9 +116,27 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         f.setTitle("Pandemic");
         f.setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
         f.getContentPane().setBackground(Color.BLACK);
-
-        // Create the animation.
+        
+        //creates the map
         holyokeGame = new HolyokeMap();
+        
+        //creates a jpanel that the image can be added to
+        JPanel panel=new JPanel(); 
+        panel.setBounds(0, 0, 900, 600);    
+        panel.setBackground(Color.gray); 
+        
+        //RESIZES IMAGE FOR FRAME
+        ImageIcon img = new javax.swing.ImageIcon("HolyokeMap.jpg");
+        Image image = img.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(900, 600,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        img = new ImageIcon(newimg);  // transform it back
+        
+        //create a jlabel and adds the image to it
+        JLabel jl=new JLabel();
+        jl.setIcon(img);
+        panel.add(jl);
+        
+        f.add(panel);  
 
         holyokeGame.addMouseListener(mouseInput);
 
