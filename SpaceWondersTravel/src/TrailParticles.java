@@ -8,10 +8,8 @@ import java.awt.Color;
 
     /**
      * 
-     * This class implements Particles class and defines methods to allow particles
-     * to move in the direction of the doctor object and disappear when they get in
-     * contact with viruses or maskless people. Doctor objects and maskless people
-     * shoot particles.
+     * This class implements TrailParticles class and defines methods to draw particles
+     * along the trail as the student moves around campus
      *
      */
     public class TrailParticles implements AnimatedObject {
@@ -26,20 +24,12 @@ import java.awt.Color;
         // The current y-coordinate of the ball from the top/bottom of the window
         private int y;
 
-//        // The number of pixels to move on each frame of the animation.
-//        private final int moveAmount = 10;
-
         // The animation that this object is part of.
         private AbstractAnimation animation;
 
         // The shape of a particle
         private Ellipse2D particle;
 
-//        // To keep track of whether the particle has intersected with a target
-//        private boolean moving = true;
-
-//        // The angle that the ship is facing
-//        private double degree;
 
         /**
          * This method draws the shape of the particles
@@ -81,8 +71,7 @@ import java.awt.Color;
          * viruses
          */
         public void disappear() {
-            // Particles disappear from screen when they hit a virus or maskless
-            // person
+            // Particles disappear from screen when the user starts a new journey
             // change the x and y coordinates to points off screen
             x = animation.getWidth() + 1;
             y = animation.getHeight() + 1;

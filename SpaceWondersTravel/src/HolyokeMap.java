@@ -64,19 +64,19 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     private Rectangle playAgainButton = new Rectangle(WINDOW_WIDTH / 2 - 330,
             500, 150, 50);
     
- // doctor variable, since there is only one doctor at a time
+ // student variable, since there is only one student at a time
     private MHCStudent student = new MHCStudent(this);
     
     private Pushpins pushpinTest = new Pushpins(this, 150, 150);
     
     
- // stores all vaccine particels
+ // stores all trail particles
     private ArrayList<TrailParticles> particleList = new ArrayList<>();
     
     
     
     /**
-     * Constructs a pandemicGame and initializes it to be able to accept key
+     * Constructs a Holyoke Map and initializes it to be able to accept key
      * input.
      */
     public HolyokeMap() {

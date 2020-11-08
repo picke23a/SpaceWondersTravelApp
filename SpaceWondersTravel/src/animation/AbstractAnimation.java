@@ -2,10 +2,10 @@ package animation;
 import javax.swing.JComponent;
 
 /**
- * Animation provides the basic functionality to run an animation. Subclasses
- * should define the nextFrame method. This method is called every 30
- * milliseconds, giving the animation an opportunity to update the display and
- * do whatever operations it needs to during the animation.
+ * Animation provides the basic functionality to run an animation. Subclasses 
+ * define next frame methods. This method is called every 30 milliseconds, giving 
+ * the animation an opportunity to update the display and do whatever operations 
+ * it needs to during the animation.
  *
  */
 public abstract class AbstractAnimation extends JComponent implements Runnable {
@@ -75,7 +75,7 @@ public abstract class AbstractAnimation extends JComponent implements Runnable {
 
     /**
      * Update the state of the animation to represent the next frame in the
-     * animation. Classes that extend Animation must define this method.
+     * animation. Classes that extend Animation define this method.
      */
     protected abstract void nextFrame();
 }

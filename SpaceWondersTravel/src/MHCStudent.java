@@ -16,13 +16,11 @@ import animation.AbstractAnimation;
 
 /**
  * 
- * Doctor class would create a doctor object that will be controlled by the
- * player. The doctor would be able to rotate clockwise or anti-clockwise,
- * hyperspace, move forward (accelerate), and shoot particles to destroy viruses
- * and masklessPeople. There are also disappear method that will be used when
- * the user loses a life.
+ * MHCStudent class would create a student object with mascots based on class year that will be controlled by the
+ * player. The player would be able to rotate clockwise or anti-clockwise,
+ * move back, move forward, and leave trails as the player moves around campus
  * 
- * @author AmyWang
+ * @author AmyWang, Gloria, Anna, Anisha
  *
  */
 public class MHCStudent extends OnscreenObject {
@@ -41,8 +39,8 @@ public class MHCStudent extends OnscreenObject {
     // The animation that this object is part of.
     private AbstractAnimation animation;
 
-    // The shape of the doctor
-    private Polygon doctorShape;
+    // The class mascot of the student
+    private Polygon studentMascot;
 
     // The starting left edge of the polygon
     private int x = 100;
@@ -87,7 +85,7 @@ public class MHCStudent extends OnscreenObject {
     }
 
     /**
-     * Draws a yellow Polygon at its current location.
+     * Draws a student mascot at its current location.
      *
      * @param g - the graphics context to draw on.
      */
@@ -128,7 +126,7 @@ public class MHCStudent extends OnscreenObject {
 
         oldPic.rotate(degree);
         AffineTransform newPic = oldPic;
-        return newPic.createTransformedShape(doctorShape);
+        return newPic.createTransformedShape(studentMascot);
     }
 
     /**
@@ -146,7 +144,7 @@ public class MHCStudent extends OnscreenObject {
     }
 
     /**
-     * Returns the degree of rotation of doctor
+     * Returns the degree of rotation of student
      * 
      * @return degree - the rotation degree from the original degree
      */
@@ -158,7 +156,7 @@ public class MHCStudent extends OnscreenObject {
     }
 
     /**
-     * Makes the doctor disappear from the screen
+     * Makes the student disappear from the screen
      */
     public void disappear() {
         final int shift = 100;
@@ -167,7 +165,7 @@ public class MHCStudent extends OnscreenObject {
     }
 
     /**
-     * Makes the doctor vanish and reappear into a new random location
+     * Makes the student vanish and reappear in a new random location
      */
     public void hyperspace() {
         int WINDOW_WIDTH = HolyokeMap.getWindowWidth();
@@ -190,7 +188,7 @@ public class MHCStudent extends OnscreenObject {
     /**
      * Returns a particle from the tip of the polygon shape
      * 
-     * @return particle - Particle class
+     * @return particle - TrailParticles class
      */
     
     public TrailParticles shoot() {
@@ -199,7 +197,7 @@ public class MHCStudent extends OnscreenObject {
     }
 
     /**
-     * Moves the polygon is a straight line with the according degree, updating
+     * Moves the student is a straight line with the according degree, updating
      * x and y coordinates
      */
     public void up() {
@@ -207,7 +205,7 @@ public class MHCStudent extends OnscreenObject {
     }
     
     /**
-     * Moves the polygon is a straight line with the according degree, updating
+     * Moves the student is a straight line with the according degree, updating
      * x and y coordinates
      */
     public void down() {
@@ -215,7 +213,7 @@ public class MHCStudent extends OnscreenObject {
     }
     
     /**
-     * Moves the polygon is a straight line with the according degree, updating
+     * Moves the student in a straight line with the according degree, updating
      * x and y coordinates
      */
     public void right() {
@@ -223,7 +221,7 @@ public class MHCStudent extends OnscreenObject {
     }
     
     /**
-     * Moves the polygon is a straight line with the according degree, updating
+     * Moves the student in a straight line with the according degree, updating
      * x and y coordinates
      */
     public void left() {
@@ -235,8 +233,8 @@ public class MHCStudent extends OnscreenObject {
     
 
     /**
-     * Keeps the doctor from disappearing off the screen. When the doctor hits
-     * the edge of the screen if appears on the opposite edge, somewhat to the
+     * Keeps the student from disappearing off the map. When the student hits
+     * the edge of the screen it appears on the opposite edge, somewhat to the
      * left of where it went off the screen on the other end.
      */
     public void wrapAround() {
