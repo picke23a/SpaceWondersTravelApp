@@ -102,17 +102,22 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
             case KeyEvent.VK_SPACE:
                 break;
             case KeyEvent.VK_UP:
-                student.accelerate();
+                student.up();
                 particleList.add(student.shoot());
                 break;
             case KeyEvent.VK_RIGHT:
+            	student.right();
                 student.rotateClockwise();
                 particleList.add(student.shoot());
                 break;
             case KeyEvent.VK_LEFT:
+            	student.left();
                 student.rotateAntiClockwise();
                 particleList.add(student.shoot());
                 break;
+            case KeyEvent.VK_DOWN:
+            	student.down();
+            	particleList.add(student.shoot());
             default:
             }
         }
@@ -138,7 +143,6 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         
         else if (State == STATE.GAME) {
         	student.paint((Graphics2D) g);
-        	System.out.println("Student paint in main");
 //            //creates a jpanel that the image can be added to
 //            JPanel panel=new JPanel(); 
 //            panel.setBounds(0, 0, 900, 600);    

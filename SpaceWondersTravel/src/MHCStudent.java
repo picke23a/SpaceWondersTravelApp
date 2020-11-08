@@ -229,10 +229,37 @@ public class MHCStudent extends OnscreenObject {
      * Moves the polygon is a straight line with the according degree, updating
      * x and y coordinates
      */
-    public void accelerate() {
-        x += (int) (moveAmount * Math.sin(degree));
-        y -= (int) (moveAmount * Math.cos(degree));
+    public void up() {
+    	y -= 5;
     }
+    
+    /**
+     * Moves the polygon is a straight line with the according degree, updating
+     * x and y coordinates
+     */
+    public void down() {
+    	y += 5;
+    }
+    
+    /**
+     * Moves the polygon is a straight line with the according degree, updating
+     * x and y coordinates
+     */
+    public void right() {
+    	x += 5;
+    }
+    
+    /**
+     * Moves the polygon is a straight line with the according degree, updating
+     * x and y coordinates
+     */
+    public void left() {
+    	x -= 5;
+    }
+    
+    
+    
+    
 
     /**
      * Keeps the doctor from disappearing off the screen. When the doctor hits
