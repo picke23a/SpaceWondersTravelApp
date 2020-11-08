@@ -6,31 +6,14 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import java.awt.Image;
-import java.awt.Toolkit;
 
 import animation.AbstractAnimation;
 
@@ -49,6 +32,7 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
     private static final int WINDOW_HEIGHT = 600;
     private static final int WINDOW_WIDTH = 900;
     
+    private MHCStudent student = new MHCStudent(this);
     
     /**
      * Keeps track of the state of the game
@@ -116,19 +100,23 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         }
         
         else if (State == STATE.GAME) {
-            //creates a jpanel that the image can be added to
-            JPanel panel=new JPanel(); 
-            panel.setBounds(0, 0, 900, 600);    
-            //panel.setBackground(Color.gray); 
+        	student.paint((Graphics2D) g);
+        	System.out.println("Student paint in main");
+//            //creates a jpanel that the image can be added to
+//            JPanel panel=new JPanel(); 
+//            panel.setBounds(0, 0, 900, 600);    
+//            //panel.setBackground(Color.gray); 
+//            
+//            ImageIcon img = new ImageIcon("HolyokeMap.jpg");
+//            f.setContentPane(new JLabel(img));
+//            f.setLayout(new FlowLayout());
+//            JLabel L1 = new JLabel();
+//            f.add(L1);
+//            f.setSize(1600,1000);
+//            //f.setSize(holyokeGame.getWidth(),holyokeGame.getHeight());
+//            f.setResizable(false);
+//            System.out.println("Are you sleeping???");
             
-            ImageIcon img = new ImageIcon("HolyokeMap.jpg");
-            f.setContentPane(new JLabel(img));
-            f.setLayout(new FlowLayout());
-            JLabel L1 = new JLabel();
-            f.add(L1);
-            f.setSize(1600,1000);
-            //f.setSize(holyokeGame.getWidth(),holyokeGame.getHeight());
-            f.setResizable(false);
 
         }
         // handles about screen
@@ -252,7 +240,11 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         holyokeGame.start();
+        
+        
     }
+    
+   
     
  
 }

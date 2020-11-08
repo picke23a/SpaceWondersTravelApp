@@ -1,10 +1,16 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import animation.AbstractAnimation;
 
@@ -39,10 +45,10 @@ public class MHCStudent extends OnscreenObject {
     private Polygon doctorShape;
 
     // The starting left edge of the polygon
-    private int x = 0;
+    private int x = 100;
 
     // The starting top of the polygon
-    private int y = 0;
+    private int y = 100;
 
     // Initializes status of rotateClockwise to false
     private boolean rotateClockwise = false;
@@ -52,36 +58,55 @@ public class MHCStudent extends OnscreenObject {
 
     // Initializes value of degree to 0
     private double degree = 0;
+    
+    BufferedImage img = null;
+    Graphics g;
+    
+    int studentWidth;
+    int studentHeight;
+
 
     /**
      * Creates the animated Doctor object
      *
      * @param animation - the animation this object is part of
+     * @return 
      */
-    public Doctor(AbstractAnimation animation) {
+    public MHCStudent(AbstractAnimation animation) {
         this.animation = animation;
-
-        Point p1;
-        Point p2;
-        Point p3;
-
-        p1 = new Point(-width, height);
-        p2 = new Point(0, -height);
-        p3 = new Point(width, height);
-
-        doctorShape = new Polygon();
-
-        doctorShape.addPoint((int) p1.getX(), (int) p1.getY());
-        doctorShape.addPoint((int) p2.getX(), (int) p2.getY());
-        doctorShape.addPoint((int) p3.getX(), (int) p3.getY());
-
-        // The width of the window, in pixels.
-        int WINDOW_WIDTH = PandemicGame.getWindowWidth();
-        // The height of the window, in pixels.
-        int WINDOW_HEIGHT = PandemicGame.getWindowHeight();
-        // Initialize (x, y) to be at the center of the window
-        x = WINDOW_WIDTH / 2;
-        y = WINDOW_HEIGHT / 2;
+        
+        try {
+        	img = ImageIO.read(new File("red-pegasus-with-circle-620x349.png"));
+        	
+        } 
+        catch (IOException e) {
+        }
+        
+        studentWidth = img.getWidth();
+        studentHeight = img.getHeight();
+        g = img.getGraphics();
+//
+//        Point p1;
+//        Point p2;
+//        Point p3;
+//
+//        p1 = new Point(-width, height);
+//        p2 = new Point(0, -height);
+//        p3 = new Point(width, height);
+//
+//        doctorShape = new Polygon();
+//
+//        doctorShape.addPoint((int) p1.getX(), (int) p1.getY());
+//        doctorShape.addPoint((int) p2.getX(), (int) p2.getY());
+//        doctorShape.addPoint((int) p3.getX(), (int) p3.getY());
+//
+//        // The width of the window, in pixels.
+//        int WINDOW_WIDTH = animation.getWidth();
+//        // The height of the window, in pixels.
+//        int WINDOW_HEIGHT = animation.getHeight();
+//        // Initialize (x, y) to be at the center of the window
+//        x = WINDOW_WIDTH / 2;
+//        y = WINDOW_HEIGHT / 2;
     }
 
     /**
@@ -90,8 +115,7 @@ public class MHCStudent extends OnscreenObject {
      * @param g - the graphics context to draw on.
      */
     public void paint(Graphics2D g) {
-        g.setColor(Color.yellow);
-        g.draw(getShape());
+        g.drawImage(img, x, y, (int)(studentWidth *0.2), (int)(studentHeight *0.2), null);
     }
 
     /**
@@ -174,27 +198,27 @@ public class MHCStudent extends OnscreenObject {
 
         // FOR TESTING PURPOSES ONLY.
         if (WINDOW_WIDTH <= 0) {
-            WINDOW_WIDTH = PandemicGame.getWindowWidth();
+            WINDOW_WIDTH = animation.getWidth();
         }
         // FOR TESTING PURPOSES ONLY.
         if (WINDOW_HEIGHT <= 0) {
-            WINDOW_HEIGHT = PandemicGame.getWindowHeight();
+            WINDOW_HEIGHT = animation.getHeight();
         }
 
         Random rand = new Random();
         x = rand.nextInt(WINDOW_WIDTH);
         y = rand.nextInt(WINDOW_HEIGHT);
     }
-
-    /**
-     * Returns a particle from the tip of the polygon shape
-     * 
-     * @return particle - Particle class
-     */
-    public Particles shoot() {
-        Particles particle = new Particles(animation, x, y, degree);
-        return particle;
-    }
+//
+//    /**
+//     * Returns a particle from the tip of the polygon shape
+//     * 
+//     * @return particle - Particle class
+//     */
+//    public Particles shoot() {
+//        Particles particle = new Particles(animation, x, y, degree);
+//        return particle;
+//    }
 
     /**
      * Moves the polygon is a straight line with the according degree, updating
@@ -220,11 +244,11 @@ public class MHCStudent extends OnscreenObject {
 
         // FOR TESTING PURPOSES ONLY
         if (WINDOW_WIDTH <= 0) {
-            WINDOW_WIDTH = PandemicGame.getWindowWidth();
+            WINDOW_WIDTH = animation.getWidth();
         }
         // FOR TESTING PURPOSES ONLY
         if (WINDOW_HEIGHT <= 0) {
-            WINDOW_HEIGHT = PandemicGame.getWindowHeight();
+            WINDOW_HEIGHT = animation.getHeight();
         }
 
         if (x > WINDOW_WIDTH && WINDOW_WIDTH > 0) {
