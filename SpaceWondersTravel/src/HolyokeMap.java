@@ -157,8 +157,8 @@ public class HolyokeMap extends AbstractAnimation implements KeyListener {
             
             
            ImageIcon img = new ImageIcon("HolyokeMap.jpg");
-          // f.setContentPane(new JLabel(img));
-           //f.setLayout(new FlowLayout());
+           f.setContentPane(new JLabel(img));
+           f.setLayout(new FlowLayout());
            //JLabel L1 = new JLabel();
           // f.add(L1);
            f.setSize(1600,1000);
